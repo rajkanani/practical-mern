@@ -38,15 +38,16 @@ function InputTag({ tagsProps, tagsLengthProps, onTagChange }) {
                 classNames={{
                     selected: "list-of-anchor",
                     tag: "list-anchor",
-                    tagInputField: "form-control form-style-input",
+                    tagInputField:
+                        "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500",
                     remove: "ReactTags__remove list-anchor-remove",
                     clearAll: "list-anchor-clear",
                 }}
-                name="anchortext"
+                name="variants"
                 tags={tags}
                 handleDelete={handleDelete}
                 handleAddition={handleAddition}
-                placeholder="List of Anchor Texts (add upto 30 Anchor Texts)*"
+                placeholder="List of Variants"
                 maxTags={tagsLength}
                 inline={true}
                 allowDragDrop={false}

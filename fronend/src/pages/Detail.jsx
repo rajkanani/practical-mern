@@ -82,6 +82,19 @@ function Detail(props) {
                                 className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">
+                                Variants
+                            </label>
+                            <input
+                                type="text"
+                                disabled
+                                name="variants"
+                                placeholder="Enter Variants"
+                                value={inventory.variants?.join(", ")}
+                                className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
                     </form>
                 </div>
             </div>

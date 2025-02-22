@@ -18,10 +18,7 @@ const ProductSchema = new mongoose.Schema({
     description: String,
     sku: String,
     quantity: Number,
-    variants: [{
-        name: String,
-        options: [String],
-    }],
+    variants: [String],
 });
 
 const Product = mongoose.model('Product', ProductSchema);
@@ -66,6 +63,10 @@ app.post('/products/add', [
 app.post('/products/details', [
     body('_id').notEmpty().withMessage('Product Id is required'),
 ], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
     try {
         const product = await Product.findById(req.body._id);
         res.json(product);

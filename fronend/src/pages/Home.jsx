@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import InputTag from "../components/InputTag";
+import InputTag from "../components/InputTag";
 
 const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
@@ -25,15 +25,14 @@ function Home() {
     const [inventory, setInventory] = useState([]);
     const [outOfStock, setOutOfStock] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [modalData, setModalData] = useState({});
     const [isEdit, setIsEdit] = useState(false);
-    const [variantList, setVariantList] = useState([]);
 
     const [formData, setFormData] = useState({
         name: "",
         description: "",
         sku: "",
         quantity: "",
+        variants: [],
     });
 
     const columns = [
@@ -54,7 +53,7 @@ function Home() {
                 outOfStock: outOfStock,
             })
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data, "-----------");
                 setInventory(response.data);
             })
             .catch((error) => {
@@ -97,6 +96,10 @@ function Home() {
         }
     };
 
+    const onTagChange = (tagList) => {
+        setFormData({ ...formData, variants: tagList });
+    };
+
     return (
         <>
             <div className="flex justify-between items-center w-full p-4">
@@ -117,12 +120,6 @@ function Home() {
                     onClick={() => {
                         setModalIsOpen(true);
                         setIsEdit(false);
-                        setModalData({
-                            name: "",
-                            description: "",
-                            sku: "",
-                            quantity: "",
-                        });
                     }}
                 >
                     Create Product
@@ -291,16 +288,16 @@ function Home() {
                             className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
-                    {/* <div>
+                    <div>
                         <label className="block text-sm font-medium text-gray-700">
                             Variants
                         </label>
                         <InputTag
-                            tagsProps={variantList}
-                            tagsLengthProps={30}
-                            // onTagChange={onTagChange}
+                            tagsProps={formData.variants || []}
+                            tagsLengthProps={5}
+                            onTagChange={onTagChange}
                         />
-                    </div> */}
+                    </div>
                     <button
                         type="submit"
                         className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
