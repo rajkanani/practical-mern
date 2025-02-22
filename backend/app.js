@@ -63,9 +63,11 @@ app.post('/products/add', [
     }
 });
 
-app.post('/products/details', async (req, res) => {
+app.post('/products/details', [
+    body('_id').notEmpty().withMessage('Product Id is required'),
+], async (req, res) => {
     try {
-        const product = await Product.findById(req.body.id);
+        const product = await Product.findById(req.body._id);
         res.json(product);
     } catch (error) {
         res.status(500).json({ error: 'Product not found' });
