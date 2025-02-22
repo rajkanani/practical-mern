@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+// import InputTag from "../components/InputTag";
 
 const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
@@ -26,6 +27,8 @@ function Home() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalData, setModalData] = useState({});
     const [isEdit, setIsEdit] = useState(false);
+    const [variantList, setVariantList] = useState([]);
+
     const [formData, setFormData] = useState({
         name: "",
         description: "",
@@ -125,7 +128,7 @@ function Home() {
                     Create Product
                 </button>
             </div>
-            <div className="flex justify-center bg-gray-50">
+            <div className="flex justify-center bg-gray-50 h-full">
                 <div className="overflow-x-auto bg-white shadow-md rounded-lg p-4">
                     <table className="min-w-full border-collapse">
                         <thead>
@@ -288,6 +291,16 @@ function Home() {
                             className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
+                    {/* <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                            Variants
+                        </label>
+                        <InputTag
+                            tagsProps={variantList}
+                            tagsLengthProps={30}
+                            // onTagChange={onTagChange}
+                        />
+                    </div> */}
                     <button
                         type="submit"
                         className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
