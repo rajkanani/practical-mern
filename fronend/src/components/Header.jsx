@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
-    const [menuOpen, setMenuOpen] = useState(false);
-
     return (
         <>
             <header className="bg-blue-600 text-white p-4 hidden md:block">
@@ -10,9 +9,9 @@ export default function Header() {
                     <h1 className="text-xl font-bold">Inventory Management</h1>
 
                     <nav className="flex space-x-6">
-                        <a href="#" className="hover:underline">
+                        <Link to={"/"} className="hover:underline">
                             Home
-                        </a>
+                        </Link>
                     </nav>
                 </div>
             </header>
